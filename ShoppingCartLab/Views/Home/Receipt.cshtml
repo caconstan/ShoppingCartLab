@@ -1,0 +1,27 @@
+﻿@model CartModel
+@{
+    ViewData["Title"] = "Receipt Page";
+}
+
+Your total comes to @Model.GetTotal()
+<br/>
+Thank you for your business!
+<br />
+Please retrieve these items from your cart:
+
+<form>
+    <table border="1">
+        <tr><th>ID</th><th>Movie</th><th>Genre</th><th>Price</th></tr>
+
+        @foreach (MovieModel mm in Model.moviesList)
+        {
+            <tr>
+                <td>@mm.ID</td>
+                <td>@mm.Title</td>
+                <td>@mm.Genre</td>
+                <td>$@mm.Price</td>
+            </tr>
+        }
+    </table>
+
+</form>

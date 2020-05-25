@@ -1,0 +1,35 @@
+﻿@model CartModel
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Movie List Page";
+}
+
+@if (ViewBag.alreadyAdded != null)
+{
+    <p>@ViewBag.alreadyAdded.Title (ID @ViewBag.alreadyAdded.ID) was already added.  Please pick another movie.</p>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To The BEST Movie Store EVER</h1>
+</div>
+
+<form action="/Home/AddMovie">
+    <input type=hidden name="MovieID" />
+
+    <table border="1">
+        <tr><th>ID</th><th>Movie</th><th>Genre</th><th>Price</th><th> </th></tr>
+
+        @foreach (MovieModel mm in Model.moviesList)
+        {
+            <tr>
+                <td>@mm.ID</td>
+                <td>@mm.Title</td>
+                <td>@mm.Genre</td>
+                <td>$@mm.Price</td>
+                <td><input type="submit" value="Add To Cart" onclick="MovieID.value=@mm.ID" /></td>
+            </tr>
+        }
+    </table>
+
+</form>

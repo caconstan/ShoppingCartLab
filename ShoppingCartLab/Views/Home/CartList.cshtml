@@ -1,0 +1,28 @@
+﻿@model CartModel
+@{
+    ViewData["Title"] = "Cart List Page";
+}
+
+Your total comes to @Model.GetTotal()
+
+Here are the items in your cart:
+
+    <form name="CartForm" action="Receipt">
+        <table border="1">
+            <tr><th>ID</th><th>Movie</th><th>Genre</th><th>Price</th></tr>
+
+            @foreach (MovieModel mm in Model.moviesList)
+            {
+                <tr>
+                    <td>@mm.ID</td>
+                    <td>@mm.Title</td>
+                    <td>@mm.Genre</td>
+                    <td>$@mm.Price</td>
+                </tr>
+            }
+        </table>
+
+        <input type="submit" onclick="document.location = 'MovieList'; return false;" value="Add Another Movie" />
+        <input type="submit" value="Check Out" />
+
+    </form>
